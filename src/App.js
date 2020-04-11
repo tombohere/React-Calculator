@@ -11,14 +11,24 @@ export default function App() {
 
 const Calculator = () => {
   const [calc, setCalc] = useState({
-    value: 0
+    value: '0'
   });
 
+  const clearEnter = () => {
+    setCalc({ value: '0' });
+  };
+
   const numberEnter = n => {
-    if (calc.value === 0) {
-      setCalc({ value: n });
+    if (calc.value === '0') {
+      setCalc({ value: n + '' });
     } else {
-      setCalc({ value: calc.value + '' + n });
+      setCalc({ value: calc.value + n + '' });
+    }
+  };
+
+  const decimalEnter = () => {
+    if (!calc.value.includes('.')) {
+      setCalc({ value: calc.value + '.' });
     }
   };
 
@@ -29,7 +39,9 @@ const Calculator = () => {
       </div>
       <div className="calc-bottom">
         <div className="calc-left">
-          <div className="calc-clear">clear</div>
+          <div className="calc-clear" onClick={clearEnter}>
+            clear
+          </div>
           <div className="calc-numbers">
             <div className="calc-number" onClick={() => numberEnter(7)}>
               7
@@ -62,7 +74,9 @@ const Calculator = () => {
             <div className="calc-number" onClick={() => numberEnter(0)}>
               0
             </div>
-            <div className="calc-number">.</div>
+            <div className="calc-number" onClick={decimalEnter}>
+              .
+            </div>
           </div>
         </div>
         <div className="calc-right">
