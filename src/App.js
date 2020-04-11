@@ -28,6 +28,9 @@ const Calculator = () => {
             <div className="calc-number">1</div>
             <div className="calc-number">2</div>
             <div className="calc-number">3</div>
+            <div className="calc-number"></div>
+            <div className="calc-number">0</div>
+            <div className="calc-number">.</div>
           </div>
         </div>
         <div className="calc-right">
