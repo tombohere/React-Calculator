@@ -9,6 +9,7 @@
   outline: 1px solid black;
   outline-offset: -1px;
   line-height: 220%;
+  user-select: none;
 }
 
 .calc-main {
@@ -66,7 +67,6 @@
 }
 
 .calc-number {
-  
 }
 
 .calc-number:hover,
