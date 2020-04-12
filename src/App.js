@@ -76,11 +76,33 @@ const Calculator = () => {
   };
 
   const equalsEnter = () => {
-    setCalc({ value: eval(calc.value) + '' });
+    if (!calc.value.match(/[\/\*\+-]$/)) {
+      setCalc({ value: eval(calc.value) + '' });
+    }
+  };
+
+  const handleKeyPress = event => {
+    if (event.key === 'c') clearEnter();
+    if (event.key === '1') numberEnter(1);
+    if (event.key === '2') numberEnter(2);
+    if (event.key === '3') numberEnter(3);
+    if (event.key === '4') numberEnter(4);
+    if (event.key === '5') numberEnter(5);
+    if (event.key === '6') numberEnter(6);
+    if (event.key === '7') numberEnter(7);
+    if (event.key === '8') numberEnter(8);
+    if (event.key === '9') numberEnter(9);
+    if (event.key === '0') numberEnter(0);
+    if (event.key === '.') decimalEnter();
+    if (event.key === '/') divideEnter();
+    if (event.key === '*') multiplyEnter();
+    if (event.key === '+') addEnter();
+    if (event.key === '-') subtractEnter();
+    if (event.key === 'Enter') equalsEnter();
   };
 
   return (
-    <div className="calc-container">
+    <div className="calc-container" tabIndex="0" onKeyPress={handleKeyPress}>
       <div className="calc-main">
         <div className="calc-top">
           <div className="calc-value">{calc.value}</div>
