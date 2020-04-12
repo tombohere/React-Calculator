@@ -56,25 +56,25 @@ const Calculator = () => {
   };
 
   const divideEnter = () => {
-    if (calc.value[calc.value.length - 1] !== '/') {
+    if (!calc.value.match(/[\/\*\+-]$/)) {
       setCalc({ value: calc.value + '/' });
     }
   };
 
   const multiplyEnter = () => {
-    if (calc.value[calc.value.length - 1] !== '*') {
+    if (!calc.value.match(/[\/\*\+-]$/)) {
       setCalc({ value: calc.value + '*' });
     }
   };
 
   const addEnter = () => {
-    if (calc.value[calc.value.length - 1] !== '+') {
+    if (!calc.value.match(/[\/\*\+-]$/)) {
       setCalc({ value: calc.value + '+' });
     }
   };
 
   const subtractEnter = () => {
-    if (calc.value[calc.value.length - 1] !== '-') {
+    if (!calc.value.match(/[\/\*\+-]$/)) {
       setCalc({ value: calc.value + '-' });
     }
   };
