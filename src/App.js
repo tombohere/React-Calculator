@@ -27,10 +27,14 @@ const Calculator = () => {
         t1.style.width = '96vw';
         t1.style.fontSize = '10.95vw';
       }
+      // fullscreen
+      // t1.style.height = '100vh';
+      // t1.style.width = '100vw';
+      // t1.style.fontSize = '7.63vh';
     }
     handleResize();
     window.addEventListener('resize', handleResize);
-  });
+  }, []);
 
   const clearEnter = () => {
     setCalc({ value: '0' });
@@ -77,7 +81,8 @@ const Calculator = () => {
 
   const equalsEnter = () => {
     if (!calc.value.match(/[\/\*\+-]$/)) {
-      setCalc({ value: eval(calc.value) + '' });
+      let value = eval(calc.value).toFixed(8) - 0 + '';
+      setCalc({ value: value });
     }
   };
 
