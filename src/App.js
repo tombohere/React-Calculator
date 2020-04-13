@@ -31,6 +31,7 @@ const Calculator = () => {
       // t1.style.height = '100vh';
       // t1.style.width = '100vw';
       // t1.style.fontSize = '7.63vh';
+      // myRef.current.focus();
     }
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -88,16 +89,7 @@ const Calculator = () => {
 
   const handleKeyPress = event => {
     if (event.key === 'c') clearEnter();
-    if (event.key === '1') numberEnter(1);
-    if (event.key === '2') numberEnter(2);
-    if (event.key === '3') numberEnter(3);
-    if (event.key === '4') numberEnter(4);
-    if (event.key === '5') numberEnter(5);
-    if (event.key === '6') numberEnter(6);
-    if (event.key === '7') numberEnter(7);
-    if (event.key === '8') numberEnter(8);
-    if (event.key === '9') numberEnter(9);
-    if (event.key === '0') numberEnter(0);
+    if ('0123456789'.includes(event.key)) numberEnter(event.key);
     if (event.key === '.') decimalEnter();
     if (event.key === '/') divideEnter();
     if (event.key === '*') multiplyEnter();
