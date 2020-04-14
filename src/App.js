@@ -11,7 +11,8 @@ export default function App() {
 
 const Calculator = () => {
   const [calc, setCalc] = useState({
-    value: '0'
+    value: '0',
+    display: '0'
   });
 
   useEffect(() => {
@@ -38,53 +39,44 @@ const Calculator = () => {
   }, []);
 
   const clearEnter = () => {
-    setCalc({ value: '0' });
+    setCalc({ value: '0', display: '0' });
   };
 
   const numberEnter = n => {
     if (calc.value === '0') {
-      setCalc({ value: n + '' });
+      setCalc({ value: n + '', display: n + '' });
     } else {
-      setCalc({ value: calc.value + n + '' });
+      let t = calc.value + n + '';
+      setCalc({ value: t, display: getDisplay(t) });
     }
   };
 
   const decimalEnter = () => {
     let t = calc.value.match(/[\d\.]*$/);
     if (!t[0].includes('.')) {
-      setCalc({ value: calc.value + '.' });
+      let t2 = calc.value + '.';
+      setCalc({ value: t2, display: t2 });
     }
   };
 
-  const divideEnter = () => {
+  const operatorEnter = n => {
     if (!calc.value.match(/[\/\*\+-]$/)) {
-      setCalc({ value: calc.value + '/' });
-    }
-  };
-
-  const multiplyEnter = () => {
-    if (!calc.value.match(/[\/\*\+-]$/)) {
-      setCalc({ value: calc.value + '*' });
-    }
-  };
-
-  const addEnter = () => {
-    if (!calc.value.match(/[\/\*\+-]$/)) {
-      setCalc({ value: calc.value + '+' });
-    }
-  };
-
-  const subtractEnter = () => {
-    if (!calc.value.match(/[\/\*\+-]$/)) {
-      setCalc({ value: calc.value + '-' });
+      let t = calc.value + n;
+      setCalc({ value: t, display: getDisplay(t) });
     }
   };
 
   const equalsEnter = () => {
     if (!calc.value.match(/[\/\*\+-]$/)) {
       let value = eval(calc.value).toFixed(8) - 0 + '';
-      setCalc({ value: value });
+      setCalc({ value: value, display: getDisplay(value) });
     }
+  };
+
+  const getDisplay = str => {
+    str = str.replace('/', '÷');
+    str = str.replace('*', '×');
+    return str;
   };
 
   const handleKeyPress = event => {
@@ -102,7 +94,7 @@ const Calculator = () => {
     <div className="calc-container" tabIndex="0" onKeyPress={handleKeyPress}>
       <div className="calc-main">
         <div className="calc-top">
-          <div className="calc-value">{calc.value}</div>
+          <div className="calc-value">{calc.display}</div>
         </div>
         <div className="calc-bottom">
           <div className="calc-left">
@@ -147,20 +139,20 @@ const Calculator = () => {
             </div>
           </div>
           <div className="calc-right">
-            <div className="calc-operator" onClick={divideEnter}>
-              &#247;
+            <div className="calc-operator" onClick={() => operatorEnter('/')}>
+              ÷
             </div>
-            <div className="calc-operator" onClick={multiplyEnter}>
-              &#215;
+            <div className="calc-operator" onClick={() => operatorEnter('*')}>
+              ×
             </div>
-            <div className="calc-operator" onClick={addEnter}>
-              &#43;
+            <div className="calc-operator" onClick={() => operatorEnter('+')}>
+              +
             </div>
-            <div className="calc-operator" onClick={subtractEnter}>
-              &#8315;
+            <div className="calc-operator" onClick={() => operatorEnter('-')}>
+              ⁻
             </div>
             <div className="calc-operator" onClick={equalsEnter}>
-              &#61;
+              =
             </div>
           </div>
         </div>
