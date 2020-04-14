@@ -74,7 +74,7 @@ const Calculator = () => {
   };
 
   const getDisplay = str => {
-    str = str.replace('/', '÷').replace('*', '×');
+    str = str.replace(/\//g, '÷').replace(/\*/g, '×');
     return str;
   };
 
@@ -120,25 +120,25 @@ const Calculator = () => {
               <div className="calc-number">1</div>
               <div className="calc-number">2</div>
               <div className="calc-number">3</div>
-              <div/>
+              <div />
               <div className="calc-number">0</div>
               <div className="calc-number">.</div>
             </div>
           </div>
           <div className="calc-right" onClick={handleOperator}>
-            <div className="calc-operator" op="/">
+            <div className="calc-op" op="/">
               ÷
             </div>
-            <div className="calc-operator" op="*">
+            <div className="calc-op" op="*">
               ×
             </div>
-            <div className="calc-operator" op="+">
+            <div className="calc-op" op="+">
               +
             </div>
-            <div className="calc-operator" op="-">
+            <div className="calc-op" op="-">
               -
             </div>
-            <div className="calc-operator" op="=">
+            <div className="calc-op" op="=">
               =
             </div>
           </div>

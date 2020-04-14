@@ -52,11 +52,11 @@
   width: 100%;
 }
 
-.calc-operator {
+.calc-op {
   width: 100%;
 }
 
-.calc-operator:hover {
+.calc-op:hover {
   border-radius: 200px;
   background-color: rgb(255, 194, 194);
   cursor: pointer;
