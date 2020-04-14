@@ -90,6 +90,11 @@ const Calculator = () => {
     if (event.key === 'Enter') equalsEnter();
   };
 
+  const test = e => {
+    let n = e.target.innerText;
+    if (n) numberEnter(n);
+  };
+
   return (
     <div className="calc-container" tabIndex="0" onKeyPress={handleKeyPress}>
       <div className="calc-main">
@@ -101,38 +106,18 @@ const Calculator = () => {
             <div className="calc-clear" onClick={clearEnter}>
               C
             </div>
-            <div className="calc-numbers">
-              <div className="calc-number" onClick={() => numberEnter(7)}>
-                7
-              </div>
-              <div className="calc-number" onClick={() => numberEnter(8)}>
-                8
-              </div>
-              <div className="calc-number" onClick={() => numberEnter(9)}>
-                9
-              </div>
-              <div className="calc-number" onClick={() => numberEnter(4)}>
-                4
-              </div>
-              <div className="calc-number" onClick={() => numberEnter(5)}>
-                5
-              </div>
-              <div className="calc-number" onClick={() => numberEnter(6)}>
-                6
-              </div>
-              <div className="calc-number" onClick={() => numberEnter(1)}>
-                1
-              </div>
-              <div className="calc-number" onClick={() => numberEnter(2)}>
-                2
-              </div>
-              <div className="calc-number" onClick={() => numberEnter(3)}>
-                3
-              </div>
-              <div className="calc-number" />
-              <div className="calc-number" onClick={() => numberEnter(0)}>
-                0
-              </div>
+            <div className="calc-numbers" onClick={test}>
+              <div className="calc-number">7</div>
+              <div className="calc-number">8</div>
+              <div className="calc-number">9</div>
+              <div className="calc-number">4</div>
+              <div className="calc-number">5</div>
+              <div className="calc-number">6</div>
+              <div className="calc-number">1</div>
+              <div className="calc-number">2</div>
+              <div className="calc-number">3</div>
+              <div />
+              <div className="calc-number">0</div>
               <div className="calc-number" onClick={decimalEnter}>
                 .
               </div>
