@@ -9,7 +9,7 @@
   outline: 1px solid black;
   outline-offset: -1px;
   line-height: 220%;
-  /* user-select: none; */
+  user-select: none;
 }
 
 .calc-container {

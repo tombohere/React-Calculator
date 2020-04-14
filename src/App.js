@@ -74,25 +74,31 @@ const Calculator = () => {
   };
 
   const getDisplay = str => {
-    str = str.replace('/', '÷');
-    str = str.replace('*', '×');
+    str = str.replace('/', '÷').replace('*', '×');
     return str;
   };
 
   const handleKeyPress = event => {
-    if (event.key === 'c') clearEnter();
-    if ('0123456789'.includes(event.key)) numberEnter(event.key);
-    if (event.key === '.') decimalEnter();
-    if (event.key === '/') divideEnter();
-    if (event.key === '*') multiplyEnter();
-    if (event.key === '+') addEnter();
-    if (event.key === '-') subtractEnter();
-    if (event.key === 'Enter') equalsEnter();
+    if (event.key === 'c') return clearEnter();
+    if ('0123456789'.includes(event.key)) return numberEnter(event.key);
+    if (event.key === '.') return decimalEnter();
+    if ('/*+-'.includes(event.key)) return operatorEnter(event.key);
+    if (event.key === 'Enter') return equalsEnter();
   };
 
-  const test = e => {
+  const handleNumber = e => {
     let n = e.target.innerText;
-    if (n) numberEnter(n);
+    if (n === 'C') return clearEnter();
+    if (n === '.') return decimalEnter();
+    if (n) return numberEnter(n);
+  };
+
+  const handleOperator = e => {
+    let n = e.target.getAttribute('op');
+    if ('/*+-'.includes(n)) {
+      return operatorEnter(n);
+    }
+    if (n === '=') return equalsEnter();
   };
 
   return (
@@ -102,11 +108,9 @@ const Calculator = () => {
           <div className="calc-value">{calc.display}</div>
         </div>
         <div className="calc-bottom">
-          <div className="calc-left">
-            <div className="calc-clear" onClick={clearEnter}>
-              C
-            </div>
-            <div className="calc-numbers" onClick={test}>
+          <div className="calc-left" onClick={handleNumber}>
+            <div className="calc-clear">C</div>
+            <div className="calc-numbers">
               <div className="calc-number">7</div>
               <div className="calc-number">8</div>
               <div className="calc-number">9</div>
@@ -116,27 +120,25 @@ const Calculator = () => {
               <div className="calc-number">1</div>
               <div className="calc-number">2</div>
               <div className="calc-number">3</div>
-              <div />
+              <div/>
               <div className="calc-number">0</div>
-              <div className="calc-number" onClick={decimalEnter}>
-                .
-              </div>
+              <div className="calc-number">.</div>
             </div>
           </div>
-          <div className="calc-right">
-            <div className="calc-operator" onClick={() => operatorEnter('/')}>
+          <div className="calc-right" onClick={handleOperator}>
+            <div className="calc-operator" op="/">
               ÷
             </div>
-            <div className="calc-operator" onClick={() => operatorEnter('*')}>
+            <div className="calc-operator" op="*">
               ×
             </div>
-            <div className="calc-operator" onClick={() => operatorEnter('+')}>
+            <div className="calc-operator" op="+">
               +
             </div>
-            <div className="calc-operator" onClick={() => operatorEnter('-')}>
+            <div className="calc-operator" op="-">
               -
             </div>
-            <div className="calc-operator" onClick={equalsEnter}>
+            <div className="calc-operator" op="=">
               =
             </div>
           </div>
