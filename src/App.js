@@ -149,7 +149,7 @@ const Calculator = () => {
               +
             </div>
             <div className="calc-operator" onClick={() => operatorEnter('-')}>
-              ⁻
+              -
             </div>
             <div className="calc-operator" onClick={equalsEnter}>
               =
