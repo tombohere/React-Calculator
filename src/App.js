@@ -18,21 +18,20 @@ const Calculator = () => {
   useEffect(() => {
     function handleResize() {
       // fit game to fill viewport
-      var [t1] = document.getElementsByClassName('calc-container');
+      var t = document.getElementsByClassName('calc-container')[0].style;
       if (3 * window.innerWidth > 2 * window.innerHeight) {
-        t1.style.height = '96vh';
-        t1.style.width = '63vh';
-        t1.style.fontSize = '7.3vh';
+        t.height = '96vh';
+        t.width = '63vh';
+        t.fontSize = '7.3vh';
       } else {
-        t1.style.height = '144vw';
-        t1.style.width = '96vw';
-        t1.style.fontSize = '10.95vw';
+        t.height = '144vw';
+        t.width = '96vw';
+        t.fontSize = '10.95vw';
       }
       // fullscreen
-      // t1.style.height = '100vh';
-      // t1.style.width = '100vw';
-      // t1.style.fontSize = '7.63vh';
-      // myRef.current.focus();
+      // t.height = '100vh';
+      // t.width = '100vw';
+      // t.fontSize = '7.63vh';
     }
     handleResize();
     window.addEventListener('resize', handleResize);
