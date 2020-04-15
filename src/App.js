@@ -67,7 +67,10 @@ const Calculator = () => {
 
   const equalsEnter = () => {
     if (!calc.value.match(/[\/\*\+-]$/)) {
-      let value = eval(calc.value).toFixed(8) - 0 + '';
+      let value =
+        Function('"use strict";return (' + calc.value + ')')().toFixed(8) -
+        0 +
+        '';
       setCalc({ value: value, display: getDisplay(value) });
     }
   };
